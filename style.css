@@ -6,3 +6,21 @@ heading {
     background-color: black;
     color: white;
 }
+
+.row {
+    text-align: center;
+    background-color: lightcoral;
+}
+
+label {
+    font-size: 20pt;
+    text-decoration: solid;
+}
+
+.row {
+    background-color: rgb(140, 153, 143);
+}
+
+.col {
+    background-color: orange;
+}

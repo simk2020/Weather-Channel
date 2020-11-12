@@ -61,13 +61,42 @@ function apicall() {
           )
           $(".day1").append(
             `
-             
               <p>Date: ${response.list[0].dt_txt}</p>
               <p> ${response.list[0].weather[0].icon} </p>
               <p>Temperature: ${response.list[0].main.feels_like}</p>
-              
               <p>Humidity: ${response.list[0].main.humidity}%</p>
-            
+              `
+          )
+          $(".day2").append(
+            `
+              <p>Date: ${response.list[0].dt_txt}</p>
+              <p> ${response.list[0].weather[0].icon} </p>
+              <p>Temperature: ${response.list[0].main.feels_like}</p>
+              <p>Humidity: ${response.list[0].main.humidity}%</p>
+              `
+          )
+          $(".day3").append(
+            `
+              <p>Date: ${response.list[0].dt_txt}</p>
+              <p> ${response.list[0].weather[0].icon} </p>
+              <p>Temperature: ${response.list[0].main.feels_like}</p>
+              <p>Humidity: ${response.list[0].main.humidity}%</p>
+              `
+          )
+          $(".day4").append(
+            `
+              <p>Date: ${response.list[0].dt_txt}</p>
+              <p> ${response.list[0].weather[0].icon} </p>
+              <p>Temperature: ${response.list[0].main.feels_like}</p>
+              <p>Humidity: ${response.list[0].main.humidity}%</p>
+              `
+          )
+          $(".day5").append(
+            `
+              <p>Date: ${response.list[0].dt_txt}</p>
+              <p> ${response.list[0].weather[0].icon} </p>
+              <p>Temperature: ${response.list[0].main.feels_like}</p>
+              <p>Humidity: ${response.list[0].main.humidity}%</p>
               `
           )
         })
@@ -93,24 +122,17 @@ $(".search").on("click", function () {
   console.log(entercity);
 
   apicall();
-
-
-
-
-
-
-  // var li = $("<li>");
-  // li.text(entercity);
-  // $("#pastCities").append(li)
-
+  $(".citycolumn").empty();
+  $(".day1").empty();
+  $(".day2").empty();
+  $(".day3").empty();
+  $(".day4").empty();
+  $(".day5").empty();
 
   $("#pastCities").append(
     `
-  <li>
-  ${entercity} 
-  </li>
+  <button>${entercity} </button>
   `
   )
 })
-
 

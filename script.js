@@ -10,15 +10,17 @@ function apicall() {
     method: "GET"
   })
     .then(function (response) {
-
+      //response 
       console.log(response);
+
       // city name, 
       console.log(entercity);
 
       // the date, 
       console.log(response.list[0].dt_txt);
 
-      // an icon representation of weather conditions,
+      // an icon representation of weather conditions
+      console.log(response.list[0].weather[0].icon)
 
       // the temperature, 
       console.log(response.list[0].main.feels_like);
@@ -30,6 +32,8 @@ function apicall() {
 
       // the wind speed, and 
       console.log(response.list[0].wind);
+
+      // the UV index
       console.log(response.city.coord.lat);
       console.log(response.city.coord.lon);
 
@@ -38,58 +42,75 @@ function apicall() {
       $.ajax({
         url: queryUrl2,
         method: "GET"
-        })
-          .then(function (response1) {
-            console.log(response1);
-              // the UV index
-            console.log(response1.value);
-            $(".citycolumn").append(
-              `
+      })
+        .then(function (response1) {
+          console.log(response1);
+          // the UV index
+          console.log(response1.value);
+
+          // appending all the required items in city column.
+          $(".citycolumn").append(
+            `
               <h2>${entercity}</h2>
-              <p>Humidity: ${response.list[0].main.humidity}</p>
+              <p>Date: ${response.list[0].dt_txt}</p>
+              <p>Temperature: ${response.list[0].main.feels_like}</p>
+              <p>Wind: ${response.list[0].wind.speed} MPH </p>
+              <p>Humidity: ${response.list[0].main.humidity}%</p>
+              <p>UV Index: ${response1.value}</p>
               `
-              )
-          })
-        });
-      }
+          )
+          $(".day1").append(
+            `
+             
+              <p>Date: ${response.list[0].dt_txt}</p>
+              <p> ${response.list[0].weather[0].icon} </p>
+              <p>Temperature: ${response.list[0].main.feels_like}</p>
+              
+              <p>Humidity: ${response.list[0].main.humidity}%</p>
+            
+              `
+          )
+        })
+    });
+}
 
-    // look at the timestamp of the time 
+// look at the timestamp of the time 
 
-    // loop through response list
-    // if response.list[i].dt_txt includes ("21:00:00")
-    // $(".fiveDay").append(
-    //   `
-    //   <div>${response.list[i].main.temp}</div>
-    //   <div>${response.list[i].main.humidity}</div>
-    //   <div>${response.list[i].main.humidity}</div>
-    //   `
-    //   )
-    
- 
+// loop through response list
+// if response.list[i].dt_txt includes ("21:00:00")
+// $(".fiveDay").append(
+//   `
+//   <div>${response.list[i].main.temp}</div>
+//   <div>${response.list[i].main.humidity}</div>
+//   <div>${response.list[i].main.humidity}</div>
+//   `
+//   )
+
+
 
 $(".search").on("click", function () {
-      entercity = $(".citysearch").val()
-      console.log(entercity);
+  entercity = $(".citysearch").val()
+  console.log(entercity);
 
-      apicall();
-
-
+  apicall();
 
 
 
 
-      // var li = $("<li>");
-      // li.text(entercity);
-      // $("#pastCities").append(li)
 
 
-      $("#pastCities").append(
-        `
+  // var li = $("<li>");
+  // li.text(entercity);
+  // $("#pastCities").append(li)
+
+
+  $("#pastCities").append(
+    `
   <li>
   ${entercity} 
   </li>
   `
-      )
-    })
+  )
+})
 
 

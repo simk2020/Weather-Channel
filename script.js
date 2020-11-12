@@ -1,20 +1,61 @@
 var entercity;
 
-function apicall () {
-//var city = "florida";
-var APIkey = "&appid=6f6303bd0f52f27c59eaf22e57fb595f";
-var queryUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + entercity + APIkey;
-console.log(queryUrl);
-$.ajax({
-  url: queryUrl,
-  method: "GET"
-})
-  .then(function (response) {
+function apicall() {
+  //var city = "florida";
+  var APIkey = "&appid=6f6303bd0f52f27c59eaf22e57fb595f";
+  var queryUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + entercity + APIkey;
+  console.log(queryUrl);
+  $.ajax({
+    url: queryUrl,
+    method: "GET"
+  })
+    .then(function (response) {
 
-    console.log(response);
-    //look at the timestamp of the time 
+      console.log(response);
+      // city name, 
+      console.log(entercity);
 
-    //loop through response list
+      // the date, 
+      console.log(response.list[0].dt_txt);
+
+      // an icon representation of weather conditions,
+
+      // the temperature, 
+      console.log(response.list[0].main.feels_like);
+      console.log(response.list[0].main.temp_max);
+      console.log(response.list[0].main.temp_min);
+
+      // the humidity, 
+      console.log(response.list[0].main.humidity);
+
+      // the wind speed, and 
+      console.log(response.list[0].wind);
+      console.log(response.city.coord.lat);
+      console.log(response.city.coord.lon);
+
+      var queryUrl2 = "http://api.openweathermap.org/data/2.5/uvi?lat=" + response.city.coord.lat + "&lon=" + response.city.coord.lon + APIkey;
+      console.log(queryUrl2);
+      $.ajax({
+        url: queryUrl2,
+        method: "GET"
+        })
+          .then(function (response1) {
+            console.log(response1);
+              // the UV index
+            console.log(response1.value);
+            $(".citycolumn").append(
+              `
+              <h2>${entercity}</h2>
+              <p>Humidity: ${response.list[0].main.humidity}</p>
+              `
+              )
+          })
+        });
+      }
+
+    // look at the timestamp of the time 
+
+    // loop through response list
     // if response.list[i].dt_txt includes ("21:00:00")
     // $(".fiveDay").append(
     //   `
@@ -24,38 +65,31 @@ $.ajax({
     //   `
     //   )
     
-  });
-}
+ 
 
 $(".search").on("click", function () {
-entercity = $(".citysearch").val()
-console.log(entercity);
+      entercity = $(".citysearch").val()
+      console.log(entercity);
 
-apicall();
-
-// city name, 
+      apicall();
 
 
-// the date, 
-// an icon representation of weather conditions,
-// the temperature, 
-// the humidity, 
-// the wind speed, and 
-// the UV index
-
-// var li = $("<li>");
-// li.text(entercity);
-// $("#pastCities").append(li)
 
 
-$("#pastCities").append(
-  `
+
+
+      // var li = $("<li>");
+      // li.text(entercity);
+      // $("#pastCities").append(li)
+
+
+      $("#pastCities").append(
+        `
   <li>
   ${entercity} 
   </li>
   `
-)
-
-})
+      )
+    })
 
 

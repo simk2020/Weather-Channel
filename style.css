@@ -1,10 +1,7 @@
 h1 {
     text-align: center;
-}
-
-heading {
-    background-color: black;
-    color: white;
+    background-color: grey;
+    color:white;
 }
 
 .row {
@@ -18,9 +15,18 @@ label {
 }
 
 .row {
-    background-color: rgb(140, 153, 143);
+    background-color:rgb(187, 184, 184);
 }
 
 .col {
     background-color: orange;
+}
+
+button {
+    background-color: black;
+    color: black;
+}
+
+.citycolumn {
+    background-color: black;
 }

@@ -59,6 +59,7 @@ function apicall() {
               <p>UV Index: ${response1.value}</p>
               `
           )
+        
           $(".day1").append(
             `
               <p>Date: ${response.list[0].dt_txt}</p>
@@ -103,7 +104,9 @@ function apicall() {
     });
 }
 
-// look at the timestamp of the time 
+// forEach (response.list[i].dt_txt includes ("21:00:00"));
+
+// );
 
 // loop through response list
 // if response.list[i].dt_txt includes ("21:00:00")

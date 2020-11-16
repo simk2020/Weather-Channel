@@ -51,7 +51,7 @@ function apicall() {
           // appending all the required items in city column.
           $(".citycolumn").append(
             `
-              <h2>${entercity}</h2>
+              <h2>${entercity.toUpperCase()}</h2>
               <p>Date: ${response.list[0].dt_txt}</p>
               <p>Temperature: ${response.list[0].main.feels_like}</p>
               <p>Wind: ${response.list[0].wind.speed} MPH </p>

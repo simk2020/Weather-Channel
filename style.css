@@ -1,12 +1,9 @@
 h1 {
     text-align: center;
-    background-color: grey;
-    color:white;
 }
 
 .row {
     text-align: center;
-    background-color: lightcoral;
 }
 
 label {
@@ -14,17 +11,24 @@ label {
     text-decoration: solid;
 }
 
-.row {
-    background-color:rgb(187, 184, 184);
-}
-
-.col {
-    background-color: orange;
-}
-
 button {
     
     color: black;
 }
 
+/* .style{
+    border: 50 pts;
+} */
+
+.citycolumn {
+    background-color: rgb(192, 192, 250);
+}
+
+.row2 {
+    background-color: rgb(213, 213, 248);
+}
+
+.pastcities {
+    background-color: rgb(213, 213, 248);
+}
 

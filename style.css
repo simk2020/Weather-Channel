@@ -11,14 +11,9 @@ label {
     text-decoration: solid;
 }
 
-button {
-    
+.search { 
     color: black;
 }
-
-/* .style{
-    border: 50 pts;
-} */
 
 .citycolumn {
     background-color: rgb(192, 192, 250);
@@ -28,7 +23,6 @@ button {
     background-color: rgb(213, 213, 248);
 }
 
-.pastcities {
-    background-color: rgb(213, 213, 248);
+.main {
+    background-color: rgb(99, 99, 126);
 }
-

@@ -120,8 +120,6 @@ function apicall() {
 //   `
 //   )
 
-
-
 $(".search").on("click", function () {
   entercity = $(".citysearch").val()
   console.log(entercity);
@@ -136,8 +134,7 @@ $(".search").on("click", function () {
 
   $("#pastCities").append(
     `
-  <button>${entercity} </button>
+  <button class = "past">${entercity}</button>
   `
   )
 })
-

@@ -80,7 +80,9 @@ function apicall() {
             `
               <p>Date: ${response.list[0].dt_txt}</p>
               <p> ${response.list[0].weather[0].icon} </p>
-              <p>Temperature: ${response.list[0].main.feels_like}</p>
+              <p> ${response.list[0].weather[0].icon}.attr(${response.list[0].weather[0].icon}, response); 
+              <img src="${response.list[0].main.feels_like}">
+              <img id="theImg" src="${response.list[0].main.feels_like}">
               <p>Humidity: ${response.list[0].main.humidity}%</p>
               `
           )

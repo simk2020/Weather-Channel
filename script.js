@@ -2,8 +2,9 @@ var entercity;
 
 function apicall() {
   //var city = "florida";
-  var APIkey = "&appid=6f6303bd0f52f27c59eaf22e57fb595f";
+  var APIkey = "&units=imperial&appid=6f6303bd0f52f27c59eaf22e57fb595f";
   var queryUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + entercity + APIkey;
+ 
   console.log(queryUrl);
   $.ajax({
     url: queryUrl,
@@ -37,6 +38,21 @@ function apicall() {
       console.log(response.city.coord.lat);
       console.log(response.city.coord.lon);
 
+
+      for (var i = 0; i < response.list.length; i++) {
+        if (response.list[i].dt_txt.includes("12:00:00")) {
+          console.log(response.list[i].dt_txt)
+          $(".fiveDay").append(
+            `
+            <p>Date: ${response.list[i].dt_txt}</p>
+            <img src ="http://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">
+            <p>Temperature: ${response.list[i].main.feels_like}</p>
+            <p>Humidity: ${response.list[i].main.humidity}%</p>
+            `
+          )
+        };
+      }
+      
       var queryUrl2 = "http://api.openweathermap.org/data/2.5/uvi?lat=" + response.city.coord.lat + "&lon=" + response.city.coord.lon + APIkey;
       console.log(queryUrl2);
       $.ajax({
@@ -59,66 +75,10 @@ function apicall() {
               <p>UV Index: ${response1.value}</p>
               `
           )
-        
-          $(".day1").append(
-            `
-              <p>Date: ${response.list[0].dt_txt}</p>
-              <p> ${response.list[0].weather[0].icon} </p>
-              <p>Temperature: ${response.list[0].main.feels_like}</p>
-              <p>Humidity: ${response.list[0].main.humidity}%</p>
-              `
-          )
-          $(".day2").append(
-            `
-              <p>Date: ${response.list[0].dt_txt}</p>
-              <p> ${response.list[0].weather[0].icon} </p>
-              <p>Temperature: ${response.list[0].main.feels_like}</p>
-              <p>Humidity: ${response.list[0].main.humidity}%</p>
-              `
-          )
-          $(".day3").append(
-            `
-              <p>Date: ${response.list[0].dt_txt}</p>
-              <p> ${response.list[0].weather[0].icon} </p>
-              <p> ${response.list[0].weather[0].icon}.attr(${response.list[0].weather[0].icon}, response); 
-              <img src="${response.list[0].main.feels_like}">
-              <img id="theImg" src="${response.list[0].main.feels_like}">
-              <p>Humidity: ${response.list[0].main.humidity}%</p>
-              `
-          )
-          $(".day4").append(
-            `
-              <p>Date: ${response.list[0].dt_txt}</p>
-              <p> ${response.list[0].weather[0].icon} </p>
-              <p>Temperature: ${response.list[0].main.feels_like}</p>
-              <p>Humidity: ${response.list[0].main.humidity}%</p>
-              `
-          )
-          $(".day5").append(
-            `
-              <p>Date: ${response.list[0].dt_txt}</p>
-              <p> ${response.list[0].weather[0].icon} </p>
-              <p>Temperature: ${response.list[0].main.feels_like}</p>
-              <p>Humidity: ${response.list[0].main.humidity}%</p>
-              `
-          )
         })
     });
 }
 
-// forEach (response.list[i].dt_txt includes ("21:00:00"));
-
-// );
-
-// loop through response list
-// if response.list[i].dt_txt includes ("21:00:00")
-// $(".fiveDay").append(
-//   `
-//   <div>${response.list[i].main.temp}</div>
-//   <div>${response.list[i].main.humidity}</div>
-//   <div>${response.list[i].main.humidity}</div>
-//   `
-//   )
 
 $(".search").on("click", function () {
   entercity = $(".citysearch").val()
@@ -126,6 +86,7 @@ $(".search").on("click", function () {
 
   apicall();
   $(".citycolumn").empty();
+  // $(".fiveDay").empty ();
   $(".day1").empty();
   $(".day2").empty();
   $(".day3").empty();

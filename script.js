@@ -45,18 +45,21 @@ function apicall() {
           $(".fiveDay").append(
             `
             <div class="card" style="width: 10em;">
+            <div class ="row">
+            <div class ="col-m-2">
             <img class="card-img-top" src="http://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png" alt="Card image cap">
-            <div class="card-body">
             <h5 class="card-title"> Date: ${response.list[i].dt_txt}</h5>
-            <p class="card-text"> Temperature: ${response.list[i].main.feels_like} </p>
+            <p class="card-text"> Temp: ${response.list[i].main.feels_like} </p>
             <p> Humidity: ${response.list[i].main.humidity}%</p>
           </div>
-        </div>
-             
+          </div>
+          </div>
+
             `
           )
         };
       }
+
 
       var queryUrl2 = "http://api.openweathermap.org/data/2.5/uvi?lat=" + response.city.coord.lat + "&lon=" + response.city.coord.lon + APIkey;
       console.log(queryUrl2);
@@ -104,8 +107,8 @@ $(".search").on("click", function () {
 })
 
 // $(".past").on("click", function () {
-//   pastcity = $(".entercity").val()
-//   console.log(pastcity);
+//   entercity = $(".pastcity").val()
+//   console.log(entercity);
 //   apicall();
 //   $(".citycolumn").empty();
 //   $(".day1").empty();

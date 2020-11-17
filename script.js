@@ -1,10 +1,10 @@
 var entercity;
-
+var pastcity;
 function apicall() {
   //var city = "florida";
   var APIkey = "&units=imperial&appid=6f6303bd0f52f27c59eaf22e57fb595f";
   var queryUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + entercity + APIkey;
- 
+
   console.log(queryUrl);
   $.ajax({
     url: queryUrl,
@@ -44,15 +44,20 @@ function apicall() {
           console.log(response.list[i].dt_txt)
           $(".fiveDay").append(
             `
-            <p>Date: ${response.list[i].dt_txt}</p>
-            <img src ="http://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">
-            <p>Temperature: ${response.list[i].main.feels_like}</p>
-            <p>Humidity: ${response.list[i].main.humidity}%</p>
+            <div class="card" style="width: 10em;">
+            <img class="card-img-top" src="http://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png" alt="Card image cap">
+            <div class="card-body">
+            <h5 class="card-title"> Date: ${response.list[i].dt_txt}</h5>
+            <p class="card-text"> Temperature: ${response.list[i].main.feels_like} </p>
+            <p> Humidity: ${response.list[i].main.humidity}%</p>
+          </div>
+        </div>
+             
             `
           )
         };
       }
-      
+
       var queryUrl2 = "http://api.openweathermap.org/data/2.5/uvi?lat=" + response.city.coord.lat + "&lon=" + response.city.coord.lon + APIkey;
       console.log(queryUrl2);
       $.ajax({
@@ -83,10 +88,8 @@ function apicall() {
 $(".search").on("click", function () {
   entercity = $(".citysearch").val()
   console.log(entercity);
-
   apicall();
   $(".citycolumn").empty();
-  // $(".fiveDay").empty ();
   $(".day1").empty();
   $(".day2").empty();
   $(".day3").empty();
@@ -95,7 +98,19 @@ $(".search").on("click", function () {
 
   $("#pastCities").append(
     `
-  <button class = "past">${entercity}</button>
+  <button class="past">${entercity}</button>
   `
   )
 })
+
+// $(".past").on("click", function () {
+//   pastcity = $(".entercity").val()
+//   console.log(pastcity);
+//   apicall();
+//   $(".citycolumn").empty();
+//   $(".day1").empty();
+//   $(".day2").empty();
+//   $(".day3").empty();
+//   $(".day4").empty();
+//   $(".day5").empty();
+// })

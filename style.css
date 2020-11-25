@@ -26,3 +26,12 @@ label {
 .main {
     background-color: rgb(99, 99, 126);
 }
+.green{
+    color: green;
+}
+.yellow{
+    color: yellow;
+}
+.red{
+    color:red;
+}

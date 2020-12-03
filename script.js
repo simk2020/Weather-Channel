@@ -109,6 +109,7 @@ $(".search").on("click", function () {
   )
 })
 
+
 // $(".past").on("click", function () {
 //   entercity = $(".pastcity").val()
 //   console.log(entercity);

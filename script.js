@@ -38,7 +38,7 @@ function apicall() {
       console.log(response.city.coord.lat);
       console.log(response.city.coord.lon);
 
-
+      $(".fiveDayForecast").empty()
       for (var i = 0; i < response.list.length; i++) {
         if (response.list[i].dt_txt.includes("12:00:00")) {
           console.log(response.list[i].dt_txt)
@@ -73,7 +73,7 @@ function apicall() {
           console.log(response1);
           // the UV index
           console.log(response1.value);
-
+          $(".citycolumn").empty()
           // appending all the required items in city column.
           $(".citycolumn").append(
             `
@@ -111,16 +111,16 @@ $(".search").on("click", function () {
 
   $("#pastCities").append(
     `
-  <button type="button" class="past" value="${entercity}">${entercity}</button>
+  <button type="button" id="${entercity}" class="past" value="${entercity}">${entercity}</button>
   `
   )
 })
 
-function getHistory(e){
-  e.preventDefault();
-  console.log("thiss")
-  console.log($(this).value)
+function getHistory(){
+  entercity = $(this).attr("id")
+  apicall();
 }
+
 $(document).on("click", ".past", getHistory)
 
 // $(".past").on("click", function () {

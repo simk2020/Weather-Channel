@@ -19,7 +19,7 @@
 
     <div class="container">
         <div class="row">
-            <div class=" main col-sm-4">
+            <div class=" main col-sm-3">
                 <label for="searchCity">  <span style="color:rgb(250, 250, 250)">Enter City</span> </label>
                 <input class="citysearch">
                 <button type="submit" class="search btn btn-primary">Search</button>
@@ -29,15 +29,11 @@
                 </div>
             </div>
 
-            <div class="fiveDay col-sm-8">
+            <div class="fiveDay col-sm-9">
                 <!-- current city with current day forcast will append here -->
-                <div class=" citycolumn col-sm-12"></div>
-                <div class="row">
-                    <div class="day1 col-sm"></div>
-                    <div class="day2 col-sm"></div>
-                    <div class="day3 col-sm"></div>
-                    <div class="day4 col-sm"></div>
-                    <div class="day5 col-sm"></div>
+                <div class=" citycolumn"></div>
+                <div class="forecastContainer">
+                    <div class="row row-sm-5 fiveDayForecast "></div>
                 </div>
             </div>
         </div>

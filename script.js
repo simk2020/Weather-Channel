@@ -38,31 +38,26 @@ function apicall() {
       console.log(response.city.coord.lat);
       console.log(response.city.coord.lon);
 
-
+      $(".fiveDayForecast").empty()
       for (var i = 0; i < response.list.length; i++) {
         if (response.list[i].dt_txt.includes("12:00:00")) {
           console.log(response.list[i].dt_txt)
-          $(".fiveDay").append(
+          $(".fiveDayForecast").append(
             `
-            <div class="card" style="width: 10em;">
-            <div class ="row">
-            <div class ="col-m-2">
-            <img class="card-img-top" src="http://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png" alt="Card image cap">
-            <h5 class="card-title"> Date: ${response.list[i].dt_txt}</h5>
-            <p class="card-text"> Temp: ${response.list[i].main.feels_like} </p>
-            <p> Humidity: ${response.list[i].main.humidity}%</p>
-          </div>
-          </div>
-          </div>
-
+              <div class ="col-md-2">
+                <div class="card" style="">
+                  <div class="card-body">
+                    <h5 class="card-title">Date: ${response.list[i].dt_txt}</h5>
+                    <img class="card-img-top" src="http://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png" alt="Card image cap">
+                    <p class="card-text">Temp: ${response.list[i].main.feels_like} </p>
+                    <p class="card-text">Humidity: ${response.list[i].main.humidity} </p>
+                  </div>
+                </div>
+              </div>
             `
           )
         };
       }
-      // for (var i = 0; i < response.value.length; i++) {
-      //   if (i <= 2 ) ${response1.value}, color = green;
-      //   else ${response1.value}, color = green
-      // }
 
       var queryUrl2 = "http://api.openweathermap.org/data/2.5/uvi?lat=" + response.city.coord.lat + "&lon=" + response.city.coord.lon + APIkey;
       console.log(queryUrl2);
@@ -74,7 +69,7 @@ function apicall() {
           console.log(response1);
           // the UV index
           console.log(response1.value);
-
+          $(".citycolumn").empty()
           // appending all the required items in city column.
           $(".citycolumn").append(
             `
@@ -83,9 +78,17 @@ function apicall() {
               <p>Temperature: ${response.list[0].main.feels_like}</p>
               <p>Wind: ${response.list[0].wind.speed} MPH </p>
               <p>Humidity: ${response.list[0].main.humidity}%</p>
-              <p>UV Index: ${response1.value}</p>
+              <p>UV Index:<span class="uvIndex"> ${response1.value}</span></p>
               `
           )
+
+          if (response1.value < 3) {
+            $(".uvIndex").addClass("green")
+          } else if (response1.value >= 3 && response1.value < 5) {
+            $(".uvIndex").addClass("yellow")
+          } else {
+            $(".uvIndex").addClass("red")
+          }
         })
     });
 }
@@ -104,20 +107,13 @@ $(".search").on("click", function () {
 
   $("#pastCities").append(
     `
-  <button class="past">${entercity}</button>
+  <button type="button" id="${entercity}" class="past" value="${entercity}">${entercity}</button>
   `
   )
 })
 
-
-// $(".past").on("click", function () {
-//   entercity = $(".pastcity").val()
-//   console.log(entercity);
-//   apicall();
-//   $(".citycolumn").empty();
-//   $(".day1").empty();
-//   $(".day2").empty();
-//   $(".day3").empty();
-//   $(".day4").empty();
-//   $(".day5").empty();
-// })
+function getHistory() {
+  entercity = $(this).attr("id")
+  apicall();
+}
+$(document).on("click", ".past", getHistory)

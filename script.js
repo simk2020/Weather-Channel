@@ -58,10 +58,6 @@ function apicall() {
           )
         };
       }
-      // for (var i = 0; i < response.value.length; i++) {
-      //   if (i <= 2 ) ${response1.value}, color = green;
-      //   else ${response1.value}, color = green
-      // }
 
       var queryUrl2 = "http://api.openweathermap.org/data/2.5/uvi?lat=" + response.city.coord.lat + "&lon=" + response.city.coord.lon + APIkey;
       console.log(queryUrl2);
@@ -86,9 +82,9 @@ function apicall() {
               `
           )
 
-          if(response1.value < 3){
+          if (response1.value < 3) {
             $(".uvIndex").addClass("green")
-          } else if (response1.value >= 3 && response1.value < 5){
+          } else if (response1.value >= 3 && response1.value < 5) {
             $(".uvIndex").addClass("yellow")
           } else {
             $(".uvIndex").addClass("red")
@@ -116,21 +112,8 @@ $(".search").on("click", function () {
   )
 })
 
-function getHistory(){
+function getHistory() {
   entercity = $(this).attr("id")
   apicall();
 }
-
 $(document).on("click", ".past", getHistory)
-
-// $(".past").on("click", function () {
-//   entercity = $(".pastcity").val()
-//   console.log(entercity);
-//   apicall();
-//   $(".citycolumn").empty();
-//   $(".day1").empty();
-//   $(".day2").empty();
-//   $(".day3").empty();
-//   $(".day4").empty();
-//   $(".day5").empty();
-// })

@@ -69,6 +69,8 @@ function apicall() {
           console.log(response1);
           // the UV index
           console.log(response1.value);
+
+          
           $(".citycolumn").empty()
           // appending all the required items in city column.
           $(".citycolumn").append(

@@ -10,9 +10,7 @@
 
 https://github.com/simk2020/weatherchannel.git
 
-https://simk2020.github.io/weatherchannel/
-
-
+ https://simk2020.github.io/Weather-Channel/
 
 
 WHEN I view the UV index

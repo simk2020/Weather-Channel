@@ -1,7 +1,6 @@
 var entercity;
 var pastcity;
 function apicall() {
-  //var city = "florida";
   var APIkey = "&units=imperial&appid=6f6303bd0f52f27c59eaf22e57fb595f";
   var queryUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + entercity + APIkey;
 
@@ -13,27 +12,20 @@ function apicall() {
     .then(function (response) {
       //response 
       console.log(response);
-
       // city name, 
       console.log(entercity);
-
       // the date, 
       console.log(response.list[0].dt_txt);
-
       // an icon representation of weather conditions
       console.log(response.list[0].weather[0].icon)
-
       // the temperature, 
       console.log(response.list[0].main.feels_like);
       console.log(response.list[0].main.temp_max);
       console.log(response.list[0].main.temp_min);
-
       // the humidity, 
       console.log(response.list[0].main.humidity);
-
       // the wind speed, and 
       console.log(response.list[0].wind);
-
       // the UV index
       console.log(response.city.coord.lat);
       console.log(response.city.coord.lon);
@@ -59,7 +51,7 @@ function apicall() {
         };
       }
 
-      var queryUrl2 = "http://api.openweathermap.org/data/2.5/uvi?lat=" + response.city.coord.lat + "&lon=" + response.city.coord.lon + APIkey;
+      var queryUrl2 = "https://api.openweathermap.org/data/2.5/uvi?lat=" + response.city.coord.lat + "&lon=" + response.city.coord.lon + APIkey;
       console.log(queryUrl2);
       $.ajax({
         url: queryUrl2,
@@ -70,19 +62,8 @@ function apicall() {
           // the UV index
           console.log(response1.value);
 
-          
-          $(".citycolumn").empty()
-          // appending all the required items in city column.
-          $(".citycolumn").append(
-            `
-              <h2>${entercity.toUpperCase()}</h2>
-              <p>Date: ${response.list[0].dt_txt}</p>
-              <p>Temperature: ${response.list[0].main.feels_like}</p>
-              <p>Wind: ${response.list[0].wind.speed} MPH </p>
-              <p>Humidity: ${response.list[0].main.humidity}%</p>
-              <p>UV Index:<span class="uvIndex"> ${response1.value}</span></p>
-              `
-          )
+
+        
 
           if (response1.value < 3) {
             $(".uvIndex").addClass("green")
